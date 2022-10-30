@@ -8,6 +8,8 @@ interface SongProps {
 }
 
 export const SongDetails: FC<SongProps> = ({ track }) => {
+    if (Object.keys(track).length === 0) return <div>Loading ...</div>;
+
     return (
         <Container>
             <div>{millisToMinutesAndSeconds(track.duration_ms)}</div>
