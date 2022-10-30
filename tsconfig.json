@@ -29,9 +29,11 @@
             "utils/*": ["utils/*"],
             "hooks/*": ["hooks/*"],
             "components/*": ["components/*"],
+            "contexts/*": ["contexts/*"],
             "styles/*": ["styles/*"],
             "pages/*": ["pages/*"],
-            "routes/*": ["routes/*"]
+            "routes/*": ["routes/*"],
+            "theme/*": ["theme/*"]
         }
     },
     "include": ["src"],

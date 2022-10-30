@@ -1,47 +1,48 @@
-import { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+import { useEffect } from 'react';
+import { SnackbarProvider } from 'notistack';
+import { NotificationsProvider, useGlobalContext } from 'contexts';
+import { Header } from 'components';
+import { RoutesApp } from 'routes';
+import { GlobalStyle } from 'styles';
+import { authParameters } from 'utils';
+import { TokenResponse } from 'models';
 
-function App() {
-    const [token, setToken] = useState('');
+export function App() {
+    const { saveToken } = useGlobalContext();
 
     useEffect(() => {
-        const hash = window.location.hash;
-        let token = window.localStorage.getItem('token') ?? '';
+        const savedToken = localStorage.getItem('token') ?? '';
 
-        if (!token && hash !== undefined) {
-            const accessToken = hash
-                .substring(1)
-                .split('&')
-                .find((elem) => elem.startsWith('access_token'));
-            if (accessToken) {
-                token = accessToken.split('=')[1];
-            }
-
-            window.location.hash = '';
-            window.localStorage.setItem('token', token);
+        if (savedToken) {
+            return saveToken(savedToken);
         }
 
-        setToken(token);
-    }, []);
-
-    const logout = () => {
-        setToken('');
-        window.localStorage.removeItem('token');
-    };
+        if (process.env?.REACT_APP_SPOTIFY_TOKEN_URL && !savedToken) {
+            fetch(process.env.REACT_APP_SPOTIFY_TOKEN_URL, authParameters)
+                .then((data) => data.json())
+                .then((data: TokenResponse) => {
+                    saveToken(data.access_token);
+                })
+                .catch((error) => console.log(error));
+        }
+    }, [saveToken]);
 
     return (
-        <div>
-            {!token ? (
-                <Button
-                    href={`${process.env.REACT_APP_SPOTIFY_AUTH_ENDPOINT}?client_id=${process.env.REACT_APP_SPOTIFY_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_SPOTIFY_REDIRECT_URI}&response_type=${process.env.REACT_APP_SPOTIFY_RESPONSE_TYPE}`}
-                >
-                    Login
-                </Button>
-            ) : (
-                <Button onClick={logout}>Logout</Button>
-            )}
-        </div>
+        <>
+            <SnackbarProvider
+                dense
+                domRoot={document.getElementById('modal') as HTMLElement}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right'
+                }}
+            >
+                <NotificationsProvider>
+                    <GlobalStyle />
+                    <Header />
+                    <RoutesApp />
+                </NotificationsProvider>
+            </SnackbarProvider>
+        </>
     );
 }
-
-export default App;
