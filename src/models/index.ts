@@ -24,3 +24,42 @@ export interface TokenResponse {
     expires_in: number;
     token_type: string;
 }
+
+export interface ArtistResponse {
+    external_urls: any;
+    href: string;
+    id: string;
+    name: string;
+    type: string;
+    uri: string;
+}
+
+export interface AlbumsResponse {
+    limit: number;
+    next: number | null;
+    offset: number | null;
+    previous: number | null;
+    total: number;
+    items: Album[];
+}
+
+export interface Album {
+    album_group: string;
+    album_type: number;
+    artists: ArtistResponse[];
+    available_markets: string[];
+    external_urls: any;
+    href: string;
+    id: string;
+    images: {
+        height: number;
+        width: number;
+        url: string;
+    }[];
+    name: string;
+    release_date: string;
+    release_date_precision: string;
+    total_tracks: number;
+    uri: string;
+    type: string;
+}

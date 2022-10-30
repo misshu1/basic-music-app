@@ -17,8 +17,8 @@ export function App() {
             return saveToken(savedToken);
         }
 
-        if (process.env?.REACT_APP_SPOTIFY_TOKEN_URL && !savedToken) {
-            fetch(process.env.REACT_APP_SPOTIFY_TOKEN_URL, authParameters)
+        if (!savedToken) {
+            fetch(process.env.REACT_APP_SPOTIFY_TOKEN_URL || '', authParameters)
                 .then((data) => data.json())
                 .then((data: TokenResponse) => {
                     saveToken(data.access_token);
