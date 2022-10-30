@@ -89,3 +89,23 @@ export interface Song {
     type: string;
     uri: string;
 }
+
+export interface SongDetails {
+    album: Album[];
+    artists: ArtistResponse[];
+    available_markets: string[];
+    disc_number: number;
+    explicit: number;
+    duration_ms: number;
+    external_urls: any;
+    external_ids: any;
+    href: string;
+    id: string;
+    is_local: boolean;
+    name: string;
+    popularity: number;
+    preview_url: string | null;
+    track_number: number;
+    type: string;
+    uri: string;
+}

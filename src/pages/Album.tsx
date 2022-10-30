@@ -11,7 +11,7 @@ export const Album = () => {
     const { token } = useGlobalContext();
     const { id } = useParams();
     const [songs, setSongs] = useState<SongModel[]>([]);
-    console.log(songs);
+
     useEffect(() => {
         if (id && token) {
             fetch(

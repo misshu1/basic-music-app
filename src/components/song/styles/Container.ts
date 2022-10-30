@@ -1,7 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { green } from 'theme';
 
-export const Container = styled.div`
+interface ContainerProps {
+    onClick?: any;
+}
+
+export const Container = styled.div<ContainerProps>`
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -13,7 +17,9 @@ export const Container = styled.div`
     color: ${green[6]};
     padding: 1rem;
     position: relative;
-    cursor: pointer;
+    ${({ onClick }) => css`
+        cursor: ${onClick ? 'pointer' : 'default'};
+    `}
 
     &&:hover {
         box-shadow: 0px 0px 0px -2px #202020, 0px 0px 0px -7px #202020,
