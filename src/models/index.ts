@@ -63,3 +63,29 @@ export interface Album {
     uri: string;
     type: string;
 }
+
+export interface AlbumSongsResponse {
+    limit: number;
+    next: number | null;
+    offset: number | null;
+    previous: number | null;
+    total: number;
+    items: Song[];
+}
+
+export interface Song {
+    artists: ArtistResponse[];
+    available_markets: string[];
+    disc_number: number;
+    explicit: number;
+    duration_ms: number;
+    external_urls: any;
+    href: string;
+    id: string;
+    is_local: boolean;
+    name: string;
+    preview_url: string | null;
+    track_number: number;
+    type: string;
+    uri: string;
+}

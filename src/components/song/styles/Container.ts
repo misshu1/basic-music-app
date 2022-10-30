@@ -1,15 +1,10 @@
 import styled from 'styled-components';
 import { green } from 'theme';
 
-interface ContainerProps {
-    image: string;
-}
-
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div`
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    gap: 1rem;
     width: 100%;
     height: 100%;
     box-shadow: 0px 0px 4px -2px #202020;
@@ -26,18 +21,17 @@ export const Container = styled.div<ContainerProps>`
         transition: 0.2s;
     }
 
-    .image {
-        background: ${({ image }) => `url(${image})`};
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-        width: 100%;
-        height: 100%;
-        max-width: 15rem;
-        max-height: 15rem;
+    .artist {
+        font-size: 14px;
+        margin-bottom: 5px;
     }
 
     .title {
         text-transform: capitalize;
+        font-weight: 900;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 `;
