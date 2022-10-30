@@ -54,8 +54,17 @@ export function Search() {
             setAlbums([]);
         } else {
             handleSearch(debouncedSearchKey);
+            localStorage.setItem('searchKey', debouncedSearchKey);
         }
     }, [debouncedSearchKey, handleSearch]);
+
+    useEffect(() => {
+        const savedSearchKey = localStorage.getItem('searchKey') ?? '';
+
+        if (savedSearchKey) {
+            setSearchKey(savedSearchKey);
+        }
+    }, []);
 
     return (
         <SearchContainer>
