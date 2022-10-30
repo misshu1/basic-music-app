@@ -1,26 +1,45 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
-  },
-  "include": [
-    "src"
-  ]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "sourceMap": false,
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "keyofStringsOnly": true,
+        "noUnusedLocals": true,
+        "removeComments": true,
+        "outDir": "build",
+        "baseUrl": "src",
+        "paths": {
+            "models/*": ["models/*"],
+            "utils/*": ["utils/*"],
+            "hooks/*": ["hooks/*"],
+            "components/*": ["components/*"],
+            "styles/*": ["styles/*"],
+            "pages/*": ["pages/*"],
+            "routes/*": ["routes/*"]
+        }
+    },
+    "include": ["src"],
+    "exclude": [
+        "**/*.spec.ts",
+        "**/*.test.ts",
+        "**/*.js",
+        "node_modules",
+        "dist"
+    ]
 }
